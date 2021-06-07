@@ -1,12 +1,19 @@
+// Create namespace
 const covidVaccinationApp = {};
 
-covidVaccinationApp.provincesSelectElement =
-  document.getElementById("provinces");
+covidVaccinationApp.provincesSelectElement = document.getElementById("provinces");
 
 covidVaccinationApp.resultsElement = document.getElementById("results");
 
+
+// 1. Get Province data from the API
+// 2. Render Province data in "select" element
+// 3. Handle form submission to collect the province the user selected
+// 4. Using province selected by the user to fetch COVID vaccination data
+// 5. Rendering total vaccinations to div
+
+
 covidVaccinationApp.init = () => {
-  // 1. Look up API documentation for how to get the data I want "FETCH the data"
   fetch("https://api.covid19tracker.ca/provinces")
     .then((response) => response.json())
     .then((listOfProvinces) => {
@@ -17,6 +24,7 @@ covidVaccinationApp.init = () => {
         covidVaccinationApp.provincesSelectElement.add(provOption);
       });
     });
+
 
   const formElement = document.getElementById("search-form");
   formElement.onsubmit = (event) => {
@@ -36,4 +44,5 @@ covidVaccinationApp.init = () => {
   };
 };
 
+// Call namespace
 covidVaccinationApp.init();
